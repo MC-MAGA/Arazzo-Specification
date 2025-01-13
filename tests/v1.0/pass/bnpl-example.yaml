@@ -1,8 +1,7 @@
 arazzo: 1.0.0
 info:
   title: BNPL Workflow description
-  description: >-
-    Describes the steps to secure a loan at checkout from a BNPL platform. It is a multi-step process that requires multiple API calls across several API providers to be completed successfully.
+  summary: A buy now, pay later workflow example
   version: 1.0.0
 sourceDescriptions:
   - name: BnplApi
@@ -212,8 +211,8 @@ workflows:
         criteria:
           - condition: $response.body#/redirectAuthToken == null
     outputs:
-      redirectAuthToken: $response.body#/redirectAuthToken
-      loanTransactionResourceUrl: $response.body#/links/self
+      redirectAuthToken: $response.body.redirectAuthToken
+      loanTransactionResourceUrl: $response.body.links.self
   - stepId: authenticateCustomerAndAuthorizeLoan
     description: |
       Authenticate the customer and seek authorization for the loan.
@@ -257,4 +256,4 @@ workflows:
     successCriteria:
       - condition: $statusCode == 204
   outputs:
-    finalizedPaymentPlan: $steps.retrieveFinalizedPaymentPlan.finalizedPaymentPlan
+    finalizedPaymentPlan: $steps.retrieveFinalizedPaymentPlan.outputs.finalizedPaymentPlan

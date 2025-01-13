@@ -20,7 +20,6 @@ workflows:
       $ref: "#/components/inputs/apply_coupon_input"
     steps:
       - stepId: find-pet
-        description: Find a pet based on the provided tags.
         operationId: findPetsByTags
         parameters:
           - name: pet_tags
@@ -45,7 +44,6 @@ workflows:
         outputs:
           my_coupon_code: $response.body#/couponCode
       - stepId: place-order
-        description: Place an order for the pet, applying the coupon.
         workflowId: place-order
         parameters:
           - name: pet_id
@@ -67,7 +65,6 @@ workflows:
       $ref: "#/components/inputs/buy_available_pet_input"
     steps:
       - stepId: find-pet
-        description: Find a pet that is available for purchase.
         operationId: findPetsByStatus
         parameters:
           - name: status
@@ -82,7 +79,6 @@ workflows:
         outputs:
           my_pet_id: $response.body#/0/id
       - stepId: place-order
-        description: Place an order for the pet.
         workflowId: place-order
         parameters:
           - name: pet_id
@@ -113,7 +109,6 @@ workflows:
           description: The coupon code to apply to the order.
     steps:
       - stepId: place-order
-        description: Place an order for the pet.
         operationId: placeOrder
         requestBody:
           contentType: application/json

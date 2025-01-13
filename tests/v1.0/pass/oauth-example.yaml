@@ -37,8 +37,6 @@ workflows:
         #   # Or a previous refresh-token-flow.outputs.refresh_token
     steps:
       - stepId: do-the-auth-flow
-        description: >-
-          This is where you do the authorization code flow
         workflowId: authorization-code-flow
         parameters:
         - name: client_id
@@ -182,4 +180,3 @@ workflows:
       access_token: $steps.get-access-token.outputs.access_token
       refresh_token: $steps.get-access-token.outputs.refresh_token
       expires_in: $steps.get-access-token.outputs.expires_in
-
